@@ -10,6 +10,8 @@ window.Game = (function () {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
+		this.ground = new window.Ground(this.el.find('.Ground'), this);
+
 		// this.landscape = new window.Landscape(this.el.find('.Landscape'), this);
 		this.isPlaying = false;
 		this.px = 0;
@@ -42,6 +44,7 @@ window.Game = (function () {
 
 		this.player.onFrame(delta);
 		var z = this.pipes.onFrame(this.player.pos);
+		this.ground.onFrame(delta);
 		if (z === 'success') {
 			this.gameScore += 1;
 			var audio = new Audio('../sounds/sfx_point.ogg');
