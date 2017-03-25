@@ -14,7 +14,8 @@ window.Game = (function () {
 		this.isPlaying = false;
 		this.px = 0;
 		this.py = 0;
-		
+		this.gameScore = 0;
+
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -37,12 +38,18 @@ window.Game = (function () {
 		var now = +new Date() / 1000,
 			delta = now - this.lastFrame;
 		this.lastFrame = now;
-		console.log();
-		
-		// this.el.css('transform', 'translateZ(0) translate(' + this.px + 'em, ' + 0 + 'em)');
-		// Update game entities.
+		// console.log();
+
 		this.player.onFrame(delta);
-		this.pipes.onFrame(this.player.pos);
+		var z = this.pipes.onFrame(this.player.pos);
+		if (z === 'success') {
+			this.gameScore += 1;
+			var audio = new Audio('../sounds/sfx_point.ogg');
+			audio.play();
+		} else if (z === 'failure') {
+			this.gameover();
+		}
+
 		// this.landscape.onFrame(delta);
 		// Request next frame.
 		window.requestAnimationFrame(this.onFrame);
@@ -72,7 +79,8 @@ window.Game = (function () {
 	 */
 	Game.prototype.gameover = function () {
 		this.isPlaying = false;
-
+		var audio = new Audio('../sounds/sfx_die.ogg');
+		audio.play();
 		// Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
