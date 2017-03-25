@@ -1,27 +1,40 @@
 .Player {
-	position: absolute;
-	width: 34px;
-	height: 24px;
 	background-image: url('../images/bird.png');
-	
+	position: absolute;
+	width: 3.4em;
+	height: 2.4em;
 	-webkit-animation: animBird 300ms steps(4) infinite;
 	animation: animBird 300ms steps(4) infinite;
+	transform: translateZ(0);
 }
+
+.Player down{
+    top: -50%;
+    left: -50%;
+    z-index: -1;
+	background-color: black;
+    -webkit-transform: rotate(30deg);
+    -moz-transform: rotate(30deg);
+    -ms-transform: rotate(30deg);
+    -o-transform: rotate(30deg);
+    transform: rotate(30deg);
+}
+
 @-webkit-keyframes animBird {
-   from { background-position: 0px 0px; }
-   to { background-position: 0px -96px; }
+   from { background-position: 0 0; }
+   to { background-position: 0 -9.6em; }
 }
 @-moz-keyframes animBird {
-   from { background-position: 0px 0px; }
-   to { background-position: 0px -96px; }
+   from { background-position: 0 0; }
+   to { background-position: 0 -9.6em; }
 }
 @-o-keyframes animBird {
-   from { background-position: 0px 0px; }
-   to { background-position: 0px -96px; }
+   from { background-position: 0 0; }
+   to { background-position: 0 -9.6em; }
 }
 @keyframes animBird {
-   from { background-position: 0px 0px; }
-   to { background-position: 0px -96px; }
+   from { background-position: 0 0; }
+   to { background-position: 0 -9.6em; }
 }
 .Scoreboard {
 	position: absolute;
@@ -57,16 +70,14 @@ font-family: 'Comic Sans MS', serif;
 font-size: 2.4em;
 color: white;
 }
-body {
-background: black;
-}
+
 .browsehappy {
 margin: 0.2em 0;
-background: ?#?ccc?;
+background: #ccc;
 color: #000;
 padding: 0.2em 0;
 }
-.GameCanvas {
+.GameCanvas  {
 font-size: 10px;
 position: absolute;
 left: 50%;
@@ -79,5 +90,34 @@ margin-top: -28.8em;
 background-color: #4ec0ca;
 overflow: hidden;
 background-image: url("../images/sky.png");
-background-position: 0px 100%;
+background-position: 0 100%;
+}
+.testClass {
+	background-color:black;
+}
+/*.Pipes {
+    background-image: url('../images/pipe-body.png'), url('../images/pipe-up.png'), linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
+
+	position: absolute;
+	bottom: 0;
+	width: 3.4em;
+	height: 10em;
+	
+}*/
+
+.Pipes {
+	position: absolute;
+	width: 0;
+	height: 0;
+	transform: translateZ(0);
+}
+
+.Pipes-up {
+	background: url('../images/pipe-down.png') bottom no-repeat, url('../images/pipe-body.png') top repeat;
+	top: 0;
+}
+
+.Pipes-down {
+	background: url('../images/pipe-up.png') top no-repeat, url('../images/pipe-body.png') bottom repeat;
+	bottom: 0;
 }

@@ -10,6 +10,7 @@ window.Player = (function() {
 	var HEIGHT = 5;
 	var INITIAL_POSITION_X = 30;
 	var INITIAL_POSITION_Y = 25;
+	// var canvas = document.getElementsByClassName('GameCanvas');
 
 	var Player = function(el, game) {
 		this.el = el;
@@ -26,23 +27,28 @@ window.Player = (function() {
 	};
 
 	Player.prototype.onFrame = function(delta) {
-		if (Controls.keys.right) {
-			this.pos.x += delta * SPEED;
-		}
-		if (Controls.keys.left) {
-			this.pos.x -= delta * SPEED;
-		}
-		if (Controls.keys.down) {
-			this.pos.y += delta * SPEED;
-		}
-		if (Controls.keys.up) {
+		// if (Controls.keys.right) {
+		// 	this.pos.x += delta * SPEED;
+		// }
+		// if (Controls.keys.left) {
+		// 	this.pos.x -= delta * SPEED;
+		// }
+		// if (Controls.keys.down) {
+		// 	this.pos.y += delta * SPEED;
+		// }
+		if (Controls.keys.space) {
 			this.pos.y -= delta * SPEED;
+		} else {
+			this.pos.y += delta * SPEED;
 		}
 
 		this.checkCollisionWithBounds();
 
 		// Update UI
-		this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
+		//document.getElementById("myDIV").style.transform = 'translate(20px)'; 
+		
+		// console.log(canvas);
+		this.el.css('transform', 'translateZ(0) translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
 	};
 
 	Player.prototype.checkCollisionWithBounds = function() {
