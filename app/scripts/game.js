@@ -85,15 +85,18 @@ window.Game = (function () {
 		var audio = new Audio('../sounds/sfx_die.ogg');
 		audio.play();
 		// Should be refactored into a Scoreboard class.
+		
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
+		scoreboardEl.find('.score-value').text(this.gameScore);
 		scoreboardEl
-			.addClass('is-visible')
+			.addClass('is-visible') 
 			.find('.Scoreboard-restart')
 			.one('click', function () {
 				scoreboardEl.removeClass('is-visible');
 				that.start();
 			});
+		this.gameScore = 0; 
 	};
 
 	/**
@@ -101,6 +104,7 @@ window.Game = (function () {
 	 */
 	Game.prototype.WORLD_WIDTH = 102.4;
 	Game.prototype.WORLD_HEIGHT = 57.6;
+	Game.prototype.SPEED = 5;
 
 	return Game;
 })();

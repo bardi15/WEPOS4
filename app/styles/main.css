@@ -8,16 +8,12 @@
 	transform: translateZ(0);
 }
 
-.Player down{
-    top: -50%;
-    left: -50%;
-    z-index: -1;
-	background-color: black;
-    -webkit-transform: rotate(30deg);
-    -moz-transform: rotate(30deg);
-    -ms-transform: rotate(30deg);
-    -o-transform: rotate(30deg);
-    transform: rotate(30deg);
+.Player-up{
+	background-image: url('../images/bird-up.png');
+}
+
+.Player-down{
+	background-image: url('../images/bird-down.png');
 }
 
 @-webkit-keyframes animBird {
@@ -79,14 +75,14 @@ padding: 0.2em 0;
 }
 .GameCanvas  {
 font-size: 10px;
-position: absolute;
-left: 50%;
-top: 50%;
+position: relative;
+/*left: 50%;
+top: 50%;*/
 width: 102.4em;
 height: 57.6em;
 background-repeat: repeat-x;
-margin-left: -51.2em;
-margin-top: -28.8em;
+/*margin-left: -51.2em;
+margin-top: -28.8em;*/
 background-color: #4ec0ca;
 overflow: hidden;
 background-image: url("../images/sky.png");
@@ -106,16 +102,19 @@ background-position: 0 76%;
 }*/
 .Ground {
 	background-image: url("../images/land.png");
-	margin-top: 45.5%;
+	bottom: 0;
+	background-position: bottom;
+	/*margin-top: 45.5%;*/
+	position: absolute;
 	background-repeat: repeat-x;
-	height: 11.2em;
-	width: 500%;
+	height: 100%;
+	width: 400%;
 	transform: translateZ(0);
 }
 .Pipes {
 	position: absolute;
-	width: 0;
-	height: 0;
+	width: 3.4em;
+	height: 15em;
 	transform: translateZ(0);
 }
 
@@ -127,4 +126,12 @@ background-position: 0 76%;
 .Pipes-down {
 	background: url('../images/pipe-up.png') top no-repeat, url('../images/pipe-body.png') bottom repeat;
 	bottom: 0;
+}
+.score {
+	position: absolute;
+	color: white;
+	font-size: 4em;
+	box-sizing: border-box;
+	background: black;
+	text-align: center;
 }
