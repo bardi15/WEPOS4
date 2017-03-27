@@ -236,7 +236,7 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
     /*margin-right: 6em;*/
 }
 .pipe {
-    width: 60px;
+    width: 6em;
     height: 45em;
     position: relative;
     /*z-index: 2;*/
@@ -273,6 +273,14 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 
 .Mute {
 	background-image: url("../images/mute.png");
+	background-size: 70%;
+	width: 3em;
+	height: 100%;
+	float: left;
+	background-repeat: no-repeat;
+}
+.Pause {
+	background-image: url("../images/pause.png");
 	background-size: 70%;
 	width: 3em;
 	height: 100%;
