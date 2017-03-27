@@ -117,14 +117,17 @@ window.Pipes = (function () {
 
 	// All these constants are in em's, multiply by 10 pixels
 	// for 1024x576px canvas.
-	var SPEED = 0.1; // * 10 pixels per second
-	var WIDTH = 5;
+	var SPEED = 1  ; // * 10 pixels per second
+	var WIDTH = 4;
 	var HEIGHT = 5;
 	var INITIAL_POSITION_X = 30;
 	var INITIAL_POSITION_Y = 25;
 	var min = 10; //pipes pulled up limit
 	var max = 25;
-	var WIGGLEFACTOR = 2;
+	var WIGGLEFACTOR = 1;
+	var _TOP = 14.5;
+	var _BOTTOM = 21;
+	// var _MARGIN = 10;
 
 	var Pipes = function (el, game) {
 		this.el = el;
@@ -132,8 +135,12 @@ window.Pipes = (function () {
 		this.game = game;
 		this.pos = { x: 0, y: 0 };
 		this.po = 0;
-		this.gap = 5;
+		this.gap = 15;
 		this.offset = 20;
+		this.distance = 12.4;
+		this.margin = 0;
+		this.success = false;
+		this.checked = false;
 	};
 
 	/**
@@ -141,61 +148,80 @@ window.Pipes = (function () {
 	 */
 	Pipes.prototype.reset = function (pipe) {
 		// this.pos.x = this.game.WORLD_WIDTH / (pipe * 5);
-		this.pos.x = pipe * this.game.WORLD_WIDTH / 4;
-		this.randomize();
-		this.el.css('margin-top', this.gap); // 
-		this.el.find('.gap').css({ 'height': this.offset + 'em' });
+		this.pos.x = 100 +   pipe * this.distance;
+		// // this.pos.x = 50;
+		// this.randomize();
+		// this.el.css('margin-top', this.gap); // 
+		// this.el.find('.gap').css({ 'height': this.offset + 'em' });
+		this.margin = rnd() / 2;
+		this.el.find('.gap').css({ 'height': 5 + 'em' });
+		this.el.find('.pipe').css({ 'margin-top': this.margin + 'em' });
+		// this.game.el.find('.one').css({ 'height': 39.5 + 'em' });
 	};
 
-	Pipes.prototype.randomize = function() {
+	Pipes.prototype.randomize = function () {
 		this.gap = rnd() * 10;
 		this.offset = rnd();
 	};
 
 	Pipes.prototype.onFrame = function (delta, pipe) {
-		this.checkCollisionWithBounds();
+
+		if (this.checkCollisionWithBounds(pipe) === false) {
+			return 'failure';
+		}
+		// if (this.game.player.pos.x > this.pos.x - 1 && this.game.player.pos.x < this.pos.x + 1) {
+		// 	this.game.gameScore += 1;
+		// }
+
 		// Update UI
 		this.pos.x -= SPEED;
 		this.pipeId = pipe;
-		if (this.pos.x < (pipe * this.game.WORLD_WIDTH / 4) * -1) {
-			// this.reset();
-			console.log('end');
-			// this.el.find('.gap').css({ 'height': rnd() + 'em' });
-			// console.log('true');
-			this.randomize();
-			this.pos.x += this.game.WORLD_WIDTH * 2;
-			this.el.css('margin-top', this.gap);
-			this.el.find('.gap').css({ 'height': this.offset + 'em' });
+		this.el.find('.place' + pipe).text(this.margin.toFixed(2));
+		if (this.pos.x <= this.distance * -1 - (pipe * WIDTH)) {
+
+			this.margin = rnd() / 2;
+			this.el.find('.pipe').css({ 'margin-top': this.margin + 'em' });
+
+			this.pos.x += 100;
+
 		}
-		// console.log('.pipesContainer pipe' + pipe);
-		// console.log(this.el.find('.pipe' + pipe));
-		// console.log(pipe);
-		// this.el.css('transform', 'translate(' + this.pos.x + 'em, ' + this.pos.y + 'em)');
-		this.el.css('transform', 'translate(' + this.pos.x + 'em)');
-		// this.el.css('background-position-y', this.bpos + 'em');
+
+		this.el.css('transform', 'translate(' + this.pos.x + (pipe * WIDTH) + 'em)');
 	};
 	function rnd() {
 		return parseInt(Math.random() * (max - min) + min, 10);
 	}
 
-	Pipes.prototype.checkCollisionWithBounds = function () {
-		if (this.pos.x - WIGGLEFACTOR < this.game.player.pos.x && this.pos.x + WIGGLEFACTOR > this.game.player.pos.x) {
-			// console.log(this.game.player.pos.x,this.game.player.pos.y, this.gap, this.offset, this.pos.x  );
-			// console.log(this.game.player.pos.y, this.gap, this.offset);
-			// console.log('## ' , this.pos.x - WIGGLEFACTOR, this.game.player.pos.x, this.pos.x + WIGGLEFACTOR);
-		} else {
-			// console.log(this.pos.x - WIGGLEFACTOR, this.game.player.pos.x, this.pos.x + WIGGLEFACTOR);
-			
+	Pipes.prototype.checkCollisionWithBounds = function (pipe) {
+		// console.log(this.success);
+		var pipeStart = (this.pos.x - WIDTH);
+		var pipeEnd = (this.pos.x);
+
+		var player = this.game.player.pos.x - pipe * (WIDTH - 1);
+
+		if (player > pipeEnd && player < pipeEnd + WIGGLEFACTOR) {
+			this.game.gameScore += 1; 
 		}
 
+		if (player > pipeStart && player < pipeEnd) {
+			var pipeUpperLimit = this.margin + _TOP;
+			var pipeLowerLimit = (this.margin * 2) + _BOTTOM;
+			var playerUD = this.game.player.pos.y;
+			this.checked = false;
+			if (playerUD > pipeUpperLimit && playerUD < pipeLowerLimit) {
+				this.checked = true;
+				// console.log('success');
+				this.success = true;
+				
+				// return true;
+			} else {
+				// console.log('failure');
+				return false;
+			}
+			this.success = false;
+		}
 
-
-		// if (this.pos.x < 0 ||
-		// 	this.pos.x + WIDTH > this.game.WORLD_WIDTH ||
-		// 	this.pos.y < 0 ||
-		// 	this.pos.y + HEIGHT > this.game.WORLD_HEIGHT) {
-		// 	return this.game.gameover();
-		// }
+		// return false;
 	};
 
 	return Pipes;

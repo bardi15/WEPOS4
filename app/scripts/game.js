@@ -13,7 +13,7 @@ window.Game = (function () {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
 		console.log(this.player);
-		// this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
+		this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
 		this.pipesArr = [];
 		for (var i = 0; i < PIPECOUNT; i++) {
 			this.pipesArr.push(new window.Pipes(this.el.find('.pipe' + (i+1)), this));
@@ -54,7 +54,14 @@ window.Game = (function () {
 		this.player.onFrame(delta);
 
 		for (var i = 0; i < PIPECOUNT; i++) {
-			this.pipesArr[i].onFrame(this.player.pos, i+1);
+			var cPipe = this.pipesArr[i].onFrame(this.player.pos, i+1);
+			console.log(this.gameScore);
+			if (cPipe === 'failure') {
+				return this.gameover();
+			} else if (cPipe === true) {
+				// this.gameScore += 1;
+				
+			}
 		}
 
 		this.el.find('.Mute').click(function () {
@@ -101,7 +108,7 @@ window.Game = (function () {
 	 * Signals that the game is over.
 	 */
 	Game.prototype.gameover = function () {
-		return;
+		// return;
 		this.isPlaying = false;
 		// var audio = new Audio('../sounds/sfx_die.ogg');
 		// audio.play();

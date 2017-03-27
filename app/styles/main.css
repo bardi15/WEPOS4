@@ -236,7 +236,7 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
     /*margin-right: 6em;*/
 }
 .pipe {
-    width: 6em;
+    width: 4em;
     height: 45em;
     position: relative;
     /*z-index: 2;*/
@@ -292,4 +292,12 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 	height: 100%;
 	width: 100%;
 	font-size: 2em;
+}
+
+.one {
+	position: absolute;
+	right: 0;
+	background-color: yellow;	
+	height: 57.6em;
+	width: 5em;
 }
