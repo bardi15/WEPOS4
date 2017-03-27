@@ -11,6 +11,7 @@ window.Ground = (function () {
         this.pipeC = 0;
         this.storyLine = 0;
         this.speed = this.game.SPEED / 5;
+        this.STORYLENGTH = game.STORYLENGTH;
             // this.el.append("<div class='Pipes Pipes-down' style='left: " + this.pipeC * 3.36 * 8  + "%'></div>");
             // this.el.append("<div class='Pipes Pipes-up ' style='left: " + this.pipeC * 3.36 * 8  + "%'></div>");
             // var pipe  = new window.Pipes(this.el.find('.Pipes'), this);
@@ -26,7 +27,7 @@ window.Ground = (function () {
     Ground.prototype.onFrame = function (delta) {
         this.counter -= this.speed;
         this.storyLine += this.speed;
-        var pos = (this.storyLine % STORYLENGTH).toFixed(0);
+        var pos = (this.storyLine % this.STORYLENGTH).toFixed(0);
         // console.log('ground');
         // if (this.counter < (0 - 33.6)) {
         //     this.counter = 0;
@@ -66,21 +67,23 @@ window.Ground = (function () {
 
         //}
         this.el.css('transform', 'translateZ(0) translate(' + pos*-1  + 'em, ' + 0 + 'em)');
+        this.el.find('.Pipes').css('transform', 'translateZ(0) translate(' + pos*-1  + 'em, ' + 0 + 'em)');
+
         // this.el.css({'width': WIDTH + 'em', 'height': HEIGHT + 'em'});
 
     };
 
 
-    Ground.prototype.createPipe = function (pos) {
+    // Ground.prototype.createPipe = function (pos) {
         
-            var z = Math.floor((Math.random() * 15) + 10);
-            console.log(pos+z);  
-            this.el.append("<div class='Pipes Pipes-down' style='left: " +  pos+z  + "%' id=" + this.pipeC + "></div>");
-            this.pipeC += 1;
-            // this.el.append("<div class='Pipes Pipes-up ' style='left: " + this.pipeC * 3.36 * 8  + "%'></div>");
-            var pipe  = new window.Pipes(this.el.find('.Pipes'), this);
+    //         var z = Math.floor((Math.random() * 15) + 10);
+    //         console.log(pos+z);  
+    //         this.el.append("<div class='Pipes Pipes-down' style='left: " +  pos+z  + "%' id=" + this.pipeC + "></div>");
+    //         this.pipeC += 1;
+    //         // this.el.append("<div class='Pipes Pipes-up ' style='left: " + this.pipeC * 3.36 * 8  + "%'></div>");
+    //         var pipe  = new window.Pipes(this.el.find('.Pipes'), this);
             
-    };
+    // };
 
     Ground.prototype.moveObject = function (xCor) {
         this.pos.RIGHT = xCor;

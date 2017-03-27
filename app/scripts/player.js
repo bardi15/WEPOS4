@@ -45,7 +45,7 @@ window.Player = (function () {
 			this.pos.y += delta * this.speed;
 			this.el.removeClass('Player-up');
 			var downL = this.game.WORLD_HEIGHT - 25;
-			console.log('downL: ' + downL + ', this.pos.y: ' + this.pos.y);
+			// console.log('downL: ' + downL + ', this.pos.y: ' + this.pos.y);
 			if (this.pos.y > downL) {
 				this.el.addClass('Player-down');
  

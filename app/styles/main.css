@@ -17,6 +17,7 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 	-moz-animation: animBird 300ms steps(4) infinite;
 	animation: animBird 300ms steps(4) infinite;
 	transform: translateZ(0);
+	z-index: 10;
 }
 
 .Player-up{
@@ -43,6 +44,93 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
    from { background-position: 0 0; }
    to { background-position: 0 -9.6em; }
 }
+
+
+.Ground {
+	background-image: url("../images/land.png");
+	/*bottom: 0;*/
+	position: relative;
+	display: inline-block;
+	background-position: bottom;
+	/*margin-top: 45.5%;*/
+	/*left: -30em;
+	right: -30em;*/
+	/*position: relative;*/
+	background-repeat: repeat-x;
+	height: 11.2em;
+	width: 400%;
+	transform: translateZ(0);
+	-webkit-animation: animGround 300ms steps(4) infinite;
+	-moz-animation: animGround 300ms steps(4) infinite;
+	animation: animGround 300ms steps(4) infinite;
+	/*z-index: 10;*/
+}
+
+@-webkit-keyframes animGround {
+   from { background-position: 0 0; }
+   to { background-position: 5em 0; }
+}
+@-moz-keyframes animGround {
+   from { background-position: 0 0; }
+   to { background-position: 5em 0; }
+}
+@-o-keyframes animGround {
+   from { background-position: 0 0; }
+   to { background-position: 5em 0; }
+}
+@keyframes animGround {
+   from { background-position: 0 0; }
+   to { background-position: 5em 0; }
+}
+
+.sky {
+	position: relative;
+	/*margin-left: -51.2em;
+	margin-top: -28.8em;*/
+	display:block;
+	
+	/*background-position: 0 76%;*/
+	/*transform: translateZ(0);*/
+	/*height: 70%;
+	bottom: 0;*/
+	/*margin-top: 45.5%;*/
+	/*left: -30em;
+	right: -30em;*/
+	/*width: 400%;*/
+	/*transform: translateZ(0);
+	-webkit-animation: animSky 300ms steps(4) infinite;
+	-moz-animation: animSky 300ms steps(4) infinite;
+	animation: animSky 300ms steps(4) infinite;*/
+	/*z-index: 1;*/
+	height: 46.4em;
+	background-repeat: repeat-x;
+	background-color: #4ec0ca;
+	background-image: url("../images/sky.png");
+    /*background-attachment: fixed;*/
+   	background-position: bottom; /*Positioning*/
+	transform: translateZ(0);
+	-webkit-animation: animSky 600ms steps(4) infinite;
+	-moz-animation: animSky 600ms steps(4) infinite;
+	animation: animSky 600ms steps(4) infinite;
+}
+
+@-webkit-keyframes animSky {
+   from { background-position: 0 bottom; }
+   to { background-position: -27.6em bottom; }
+}
+@-moz-keyframes animSky {
+   from { background-position: 0 bottom; }
+   to { background-position: -27.6em bottom; }
+}
+@-o-keyframes animSky {
+   from { background-position: 0 bottom; }
+   to { background-position: -27.6em bottom; }
+}
+@keyframes animSky {
+   from { background-position: 0 bottom; }
+   to { background-position: -27.6em bottom; }
+}
+
 .Scoreboard {
 	position: absolute;
 	left: 50%;
@@ -86,38 +174,28 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 	cursor: pointer;
 }
 .Scoreboard-restartText {
-font-family: 'Comic Sans MS', serif;
-font-size: 2.4em;
-color: white;
+	font-family: 'Comic Sans MS', serif;
+	font-size: 2.4em;
+	color: white;
 }
 
 .browsehappy {
-margin: 0.2em 0;
-background: #ccc;
-color: #000;
-padding: 0.2em 0;
+	margin: 0.2em 0;
+	background: #ccc;
+	color: #000;
+	padding: 0.2em 0;
 }
 .GameCanvas  {
-font-size: 10px;
-position: relative;
-/*left: 50%;
-top: 50%;*/
-width: 102.4em;
-height: 57.6em;
-background-repeat: repeat-x;
-/*margin-left: -51.2em;
-margin-top: -28.8em;*/
-background-color: #4ec0ca;
-overflow: hidden;
-background-image: url("../images/sky.png");
-background-position: 0 76%;
-transform: translateZ(0);
+	font-size: 10px;
+	position: absolute;
+	/*left: 50%;
+	top: 50%;*/
+	width: 51.2em;
+	height: 57.6em;
 
-.sky {
-	
+	overflow: hidden;
 }
 
-}
 .testClass {
 	background-color:black;
 }
@@ -130,17 +208,7 @@ transform: translateZ(0);
 	height: 10em;
 	
 }*/
-.Ground {
-	background-image: url("../images/land.png");
-	bottom: 0;
-	background-position: bottom;
-	/*margin-top: 45.5%;*/
-	position: absolute;
-	background-repeat: repeat-x;
-	height: 100%;
-	width: 400%;
-	transform: translateZ(0);
-}
+
 /*.Pipes {
 	position: absolute;
 	background: url('../images/pipe-b.png');
@@ -159,25 +227,25 @@ transform: translateZ(0);
 
 .Pipes {
     position: absolute;
-    top: -28.8em;
+    top: -30.4em;
     width: 100000px;
-    bottom: 28.8em;
+    /*bottom: 40.8em;*/
 }
 .pipesContainer {
     float: left;
-    /*margin-right: 90px;*/
+    /*margin-right: 6em;*/
 }
 .pipe {
     width: 60px;
-    height: 57.6em;
+    height: 45em;
     position: relative;
-    z-index: 2;
+    /*z-index: 2;*/
     background: url('../images/pipe-b.png');
-
+	/*z-index: 0;*/
 }
 .gap {
     width: 100%;
-	height: 5em;
+	height: 10em;
 }
 .pipe-topHalf {
 	background-position: bottom;

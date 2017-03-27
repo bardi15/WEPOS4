@@ -6,11 +6,19 @@ window.Game = (function () {
 	 * @param {Element} el jQuery element containing the game.
 	 * @constructor
 	 */
+
+	var PIPECOUNT = 4;
+
 	var Game = function (el) {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
-		this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
-		this.ground = new window.Ground(this.el.find('.Ground'), this);
+		console.log(this.player);
+		// this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
+		this.pipesArr = [];
+		for (var i = 0; i < PIPECOUNT; i++) {
+			this.pipesArr.push(new window.Pipes(this.el.find('.pipe' + (i+1)), this));
+		}
+		// this.ground = new window.Ground(this.el.find('.Ground'), this);
 		this.counter = 0;
 		// this.landscape = new window.Landscape(this.el.find('.Landscape'), this);
 		this.isPlaying = false;
@@ -44,21 +52,17 @@ window.Game = (function () {
 		this.counter += 5;
 
 		this.player.onFrame(delta);
-		var z = this.pipes.onFrame(this.player.pos);
-		this.ground.onFrame(delta);
-		if (z === 'success') {
-			this.gameScore += 1;
-			this.playSound('sfx_point.ogg');
-			this.el.find('.Current').text(this.gameScore);
-		} else if (z === 'failure') {
-			this.gameover();
+
+		for (var i = 0; i < PIPECOUNT; i++) {
+			this.pipesArr[i].onFrame(this.player.pos, i+1);
 		}
+
 		this.el.find('.Mute').click(function () {
 			this.mute = true;
 		});
 		// this.landscape.onFrame(delta);
 		// Request next frame.
-		this.el.css('transform', 'translateZ(0) translate(' + this.counter + 'em, ' + 0 + 'em)');
+		// this.el.css('transform', 'translateZ(0) translate(' + this.counter + 'em, ' + 0 + 'em)');
 		window.requestAnimationFrame(this.onFrame);
 	};
 
@@ -88,12 +92,16 @@ window.Game = (function () {
 	 */
 	Game.prototype.reset = function () {
 		this.player.reset();
+		for (var i = 0; i < PIPECOUNT; i++) {
+			this.pipesArr[i].reset(i+1);
+		}
 	};
 
 	/**
 	 * Signals that the game is over.
 	 */
 	Game.prototype.gameover = function () {
+		return;
 		this.isPlaying = false;
 		// var audio = new Audio('../sounds/sfx_die.ogg');
 		// audio.play();
@@ -116,9 +124,11 @@ window.Game = (function () {
 	/**
 	 * Some shared constants.
 	 */
-	Game.prototype.WORLD_WIDTH = 102.4;
+	Game.prototype.WORLD_WIDTH = 51.2;
 	Game.prototype.WORLD_HEIGHT = 57.6;
-	Game.prototype.SPEED = 5;
+	Game.prototype.SPEED = 1;
+	Game.prototype.STORYLENGTH = 33.6;
+
 
 	return Game;
 })();
