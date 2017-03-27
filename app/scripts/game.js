@@ -52,15 +52,12 @@ window.Game = (function () {
 		this.counter += 5;
 
 		this.player.onFrame(delta);
-
+		this.el.find('.Current').text(this.gameScore);
 		for (var i = 0; i < PIPECOUNT; i++) {
 			var cPipe = this.pipesArr[i].onFrame(this.player.pos, i+1);
-			console.log(this.gameScore);
+			// console.log(this.gameScore);
 			if (cPipe === 'failure') {
 				return this.gameover();
-			} else if (cPipe === true) {
-				// this.gameScore += 1;
-				
 			}
 		}
 
@@ -114,7 +111,6 @@ window.Game = (function () {
 		// audio.play();
 		this.playSound('sfx_die.ogg');
 		// Should be refactored into a Scoreboard class.
-
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
 		scoreboardEl.find('.score-value').text(this.gameScore);
