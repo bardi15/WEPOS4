@@ -44,7 +44,7 @@ window.Pipes = (function () {
 		}
 
 		this.el.css('transform', 'translateZ(0) translate(' + this.counter + 'em, ' + 0 + 'em)');
-		this.el.css({ 'width': WIDTH + 'em', 'height': HEIGHT + 'em' });
+		// this.el.css({ 'width': WIDTH + 'em', 'height': HEIGHT + 'em' });
 
 	};
 

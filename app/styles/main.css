@@ -1,9 +1,20 @@
+@font-face {
+    font-family: 'Conv_04B_19__';
+    src: url('./images/font/04B_19__.eot?#iefix') format('embedded-opentype'), 
+        url('./images/font/04B_19__.woff') format('woff'), 
+        url('./images/font/04B_19__.ttf')  format('truetype'),
+        url('./images/font/04B_19__.svg#svgFontName') format('svg');
+}
+
+h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
+
 .Player {
 	background-image: url('../images/bird.png');
 	position: absolute;
 	width: 3.4em;
 	height: 2.4em;
 	-webkit-animation: animBird 300ms steps(4) infinite;
+	-moz-animation: animBird 300ms steps(4) infinite;
 	animation: animBird 300ms steps(4) infinite;
 	transform: translateZ(0);
 }
@@ -43,14 +54,27 @@
 	background: purple;
 	text-align: center;
 	-webkit-transform: translate(0, -40em);
+	-ms-transform: translate(0, -40em);
+	-moz-transform: translate(0, -40em);
+	-o-transform: translate(0, -40em);
+	transform: translate(0, -40em);
 	-webkit-transition: -webkit-transform 0.5s;
+	-o-transition: -webkit-transform 0.5s;
+	-moz-transition: -webkit-transform 0.5s;
+	transition: -webkit-transform 0.5s;
+
 }
 
 /**
 * Reset transform to animate it into the correct spot on the screen.
 */
-.Scoreboard.is-visible {
+.Scoreboard-is-visible {
 	-webkit-transform: none;
+	-o-transform: none;
+	-moz-transform: none;
+	-ms-transform: none;
+	transform: none;
+
 }
 
 .Scoreboard-restart {
@@ -87,6 +111,12 @@ background-color: #4ec0ca;
 overflow: hidden;
 background-image: url("../images/sky.png");
 background-position: 0 76%;
+transform: translateZ(0);
+
+.sky {
+	
+}
+
 }
 .testClass {
 	background-color:black;
@@ -111,22 +141,51 @@ background-position: 0 76%;
 	width: 400%;
 	transform: translateZ(0);
 }
-.Pipes {
+/*.Pipes {
 	position: absolute;
+	background: url('../images/pipe-b.png');
 	width: 3.4em;
-	height: 15em;
+	height: 50%;
 	transform: translateZ(0);
 }
 
 .Pipes-up {
-	background: url('../images/pipe-down.png') bottom no-repeat, url('../images/pipe-body.png') top repeat;
-	top: 0;
+
 }
 
 .Pipes-down {
-	background: url('../images/pipe-up.png') top no-repeat, url('../images/pipe-body.png') bottom repeat;
-	bottom: 0;
+
+}*/
+
+.Pipes {
+    position: absolute;
+    top: -28.8em;
+    width: 100000px;
+    bottom: 28.8em;
 }
+.pipesContainer {
+    float: left;
+    /*margin-right: 90px;*/
+}
+.pipe {
+    width: 60px;
+    height: 57.6em;
+    position: relative;
+    z-index: 2;
+    background: url('../images/pipe-b.png');
+
+}
+.gap {
+    width: 100%;
+	height: 5em;
+}
+.pipe-topHalf {
+	background-position: bottom;
+}
+.pipe-bottomHalf {
+	background-position: top;
+}
+
 .score {
 	position: absolute;
 	color: white;
@@ -134,4 +193,27 @@ background-position: 0 76%;
 	box-sizing: border-box;
 	background: black;
 	text-align: center;
+}
+
+.Settings {
+	position: absolute;
+	background: yellow;
+	width: 10em;
+	height: 2em;
+	bottom: 0;
+}
+
+.Mute {
+	background-image: url("../images/mute.png");
+	background-size: 70%;
+	width: 3em;
+	height: 100%;
+	float: left;
+	background-repeat: no-repeat;
+}
+
+.Current {
+	height: 100%;
+	width: 100%;
+	font-size: 2em;
 }

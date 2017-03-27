@@ -11,13 +11,13 @@ window.Game = (function () {
 		this.player = new window.Player(this.el.find('.Player'), this);
 		this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
 		this.ground = new window.Ground(this.el.find('.Ground'), this);
-
+		this.counter = 0;
 		// this.landscape = new window.Landscape(this.el.find('.Landscape'), this);
 		this.isPlaying = false;
 		this.px = 0;
 		this.py = 0;
 		this.gameScore = 0;
-
+		this.mute = false;
 
 		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
@@ -41,20 +41,24 @@ window.Game = (function () {
 			delta = now - this.lastFrame;
 		this.lastFrame = now;
 		// console.log();
+		this.counter += 5;
 
 		this.player.onFrame(delta);
 		var z = this.pipes.onFrame(this.player.pos);
 		this.ground.onFrame(delta);
 		if (z === 'success') {
 			this.gameScore += 1;
-			var audio = new Audio('../sounds/sfx_point.ogg');
-			audio.play();
+			this.playSound('sfx_point.ogg');
+			this.el.find('.Current').text(this.gameScore);
 		} else if (z === 'failure') {
 			this.gameover();
 		}
-
+		this.el.find('.Mute').click(function () {
+			this.mute = true;
+		});
 		// this.landscape.onFrame(delta);
 		// Request next frame.
+		this.el.css('transform', 'translateZ(0) translate(' + this.counter + 'em, ' + 0 + 'em)');
 		window.requestAnimationFrame(this.onFrame);
 	};
 
@@ -70,6 +74,15 @@ window.Game = (function () {
 		this.isPlaying = true;
 	};
 
+	Game.prototype.playSound = function (sound) {
+		if (this.mute) {
+			return;
+		} else {
+			var audio = new Audio('../sounds/' + sound);
+			audio.play();
+		}
+	};
+
 	/**
 	 * Resets the state of the game so a new game can be started.
 	 */
@@ -82,21 +95,22 @@ window.Game = (function () {
 	 */
 	Game.prototype.gameover = function () {
 		this.isPlaying = false;
-		var audio = new Audio('../sounds/sfx_die.ogg');
-		audio.play();
+		// var audio = new Audio('../sounds/sfx_die.ogg');
+		// audio.play();
+		this.playSound('sfx_die.ogg');
 		// Should be refactored into a Scoreboard class.
-		
+
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
 		scoreboardEl.find('.score-value').text(this.gameScore);
 		scoreboardEl
-			.addClass('is-visible') 
+			.addClass('Scoreboard-is-visible')
 			.find('.Scoreboard-restart')
 			.one('click', function () {
-				scoreboardEl.removeClass('is-visible');
+				scoreboardEl.removeClass('Scoreboard-is-visible');
 				that.start();
 			});
-		this.gameScore = 0; 
+		this.gameScore = 0;
 	};
 
 	/**
