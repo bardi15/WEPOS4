@@ -39,7 +39,7 @@ window.Pipes = (function () {
 
 	Pipes.prototype.randomize = function () {
 		this.margin = rnd(10,18);
-		this.gap = rnd(4,10);
+		this.gap = rnd(8,12);
 	};
 
 	Pipes.prototype.onFrame = function (delta, pipe) {

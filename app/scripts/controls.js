@@ -1,5 +1,5 @@
 
-window.Controls = (function() {
+window.Controls = (function () {
     'use strict';
 
     /**
@@ -19,7 +19,7 @@ window.Controls = (function() {
      * and touch devices.
      * @constructor
      */
-    var Controls = function() {
+    var Controls = function () {
         this._didJump = false;
         this.keys = {};
         $(window)
@@ -27,22 +27,25 @@ window.Controls = (function() {
             .on('keyup', this._onKeyUp.bind(this));
     };
 
-    Controls.prototype._onKeyDown = function(e) {
+    Controls.prototype._onKeyDown = function (e) {
         // Only jump if space wasn't pressed.
         if (e.keyCode === 32 && !this.keys.space) {
             this._didJump = true;
+            console.log('iiiiiii');
         }
-
+        // this._didJump = false;
         // Remember that this button is down.
         if (e.keyCode in KEYS) {
             var keyName = KEYS[e.keyCode];
             this.keys[keyName] = true;
+            // console.log('false');
             return false;
         }
     };
 
-    Controls.prototype._onKeyUp = function(e) {
+    Controls.prototype._onKeyUp = function (e) {
         if (e.keyCode in KEYS) {
+            console.log('ooooooo');
             var keyName = KEYS[e.keyCode];
             this.keys[keyName] = false;
             return false;
@@ -52,7 +55,7 @@ window.Controls = (function() {
     /**
      * Only answers true once until a key is pressed again.
      */
-    Controls.prototype.didJump = function() {
+    Controls.prototype.didJump = function () {
         var answer = this._didJump;
         this._didJump = false;
         return answer;

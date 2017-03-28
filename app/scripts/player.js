@@ -8,7 +8,7 @@ window.Player = (function () {
 	var SPEED = 15; // * 10 pixels per second
 	var WIDTH = 3.4;
 	var HEIGHT = 2.4;
-	var INITIAL_POSITION_X = 30;
+	var INITIAL_POSITION_X = 10;
 	var INITIAL_POSITION_Y = 25;
 	// var canvas = document.getElementsByClassName('GameCanvas');
 
@@ -32,6 +32,7 @@ window.Player = (function () {
 			this.pos.y -= delta * SPEED;
 			this.el.addClass('Player-up');
 			this.el.removeClass('Player-down');
+			// console.log('_didJump:', Controls.didJump);
 		} else {
 			this.pos.y += delta * SPEED;
 			this.el.removeClass('Player-up');

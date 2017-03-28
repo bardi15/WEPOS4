@@ -42,6 +42,7 @@ window.Game = (function () {
 		if (!this.isPlaying) {
 			return;
 		}
+		console.log(this.isPlaying);
 		// console.log(this.canvas);
 		//this.canvas.style.transform = "rotate(7deg)";
 		// Calculate how long since last frame in seconds.
@@ -49,7 +50,7 @@ window.Game = (function () {
 			delta = now - this.lastFrame;
 		this.lastFrame = now;
 		// console.log();
-		this.counter += 5;
+		// this.counter += 5;
 
 		this.player.onFrame(delta);
 		this.el.find('.Current').text(this.gameScore);
@@ -63,7 +64,7 @@ window.Game = (function () {
 
 		this.el.find('.Mute').click(function () {
 			this.mute = true;
-			console.log('clikced');
+			// console.log('clikced');
 		});
 		// this.landscape.onFrame(delta);
 		// Request next frame.
@@ -75,6 +76,7 @@ window.Game = (function () {
 	 * Starts a new game.
 	 */
 	Game.prototype.start = function () {
+		// console.log('start');
 		this.reset();
 
 		// Restart the onFrame loop
@@ -108,6 +110,7 @@ window.Game = (function () {
 	Game.prototype.gameover = function () {
 		// return;
 		this.isPlaying = false;
+		// console.log(this.isPlaying);
 		// var audio = new Audio('../sounds/sfx_die.ogg');
 		// audio.play();
 		this.playSound('sfx_die.ogg');

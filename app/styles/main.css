@@ -48,14 +48,9 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 
 .Ground {
 	background-image: url("../images/land.png");
-	/*bottom: 0;*/
 	position: relative;
 	display: inline-block;
 	background-position: bottom;
-	/*margin-top: 45.5%;*/
-	/*left: -30em;
-	right: -30em;*/
-	/*position: relative;*/
 	background-repeat: repeat-x;
 	height: 11.2em;
 	width: 400%;
@@ -63,7 +58,6 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 	-webkit-animation: animGround 300ms steps(4) infinite;
 	-moz-animation: animGround 300ms steps(4) infinite;
 	animation: animGround 300ms steps(4) infinite;
-	/*z-index: 10;*/
 }
 
 @-webkit-keyframes animGround {
@@ -85,29 +79,12 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 
 .sky {
 	position: relative;
-	/*margin-left: -51.2em;
-	margin-top: -28.8em;*/
 	display:block;
-	
-	/*background-position: 0 76%;*/
-	/*transform: translateZ(0);*/
-	/*height: 70%;
-	bottom: 0;*/
-	/*margin-top: 45.5%;*/
-	/*left: -30em;
-	right: -30em;*/
-	/*width: 400%;*/
-	/*transform: translateZ(0);
-	-webkit-animation: animSky 300ms steps(4) infinite;
-	-moz-animation: animSky 300ms steps(4) infinite;
-	animation: animSky 300ms steps(4) infinite;*/
-	/*z-index: 1;*/
 	height: 46.4em;
 	background-repeat: repeat-x;
 	background-color: #4ec0ca;
 	background-image: url("../images/sky.png");
-    /*background-attachment: fixed;*/
-   	background-position: bottom; /*Positioning*/
+   	background-position: bottom; 
 	transform: translateZ(0);
 	-webkit-animation: animSky 600ms steps(4) infinite;
 	-moz-animation: animSky 600ms steps(4) infinite;
@@ -188,60 +165,24 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 .GameCanvas  {
 	font-size: 10px;
 	position: absolute;
-	/*left: 50%;
-	top: 50%;*/
 	width: 51.2em;
 	height: 57.6em;
-
 	overflow: hidden;
 }
-
-.testClass {
-	background-color:black;
-}
-/*.Pipes {
-    background-image: url('../images/pipe-body.png'), url('../images/pipe-up.png'), linear-gradient(to right, rgba(30, 75, 115, 1), rgba(255, 255, 255, 0));
-
-	position: absolute;
-	bottom: 0;
-	width: 3.4em;
-	height: 10em;
-	
-}*/
-
-/*.Pipes {
-	position: absolute;
-	background: url('../images/pipe-b.png');
-	width: 3.4em;
-	height: 50%;
-	transform: translateZ(0);
-}
-
-.Pipes-up {
-
-}
-
-.Pipes-down {
-
-}*/
 
 .Pipes {
     position: absolute;
     top: -30.4em;
     width: 100000px;
-    /*bottom: 40.8em;*/
 }
 .pipesContainer {
     float: left;
-    /*margin-right: 6em;*/
 }
 .pipe {
     width: 4em;
     height: 45em;
     position: relative;
-    /*z-index: 2;*/
     background: url('../images/pipe-b.png');
-	/*z-index: 0;*/
 }
 .gap {
     width: 100%;
@@ -292,12 +233,4 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 	height: 100%;
 	width: 100%;
 	font-size: 2em;
-}
-
-.one {
-	position: absolute;
-	right: 0;
-	background-color: yellow;	
-	height: 57.6em;
-	width: 5em;
 }
