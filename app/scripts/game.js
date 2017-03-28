@@ -8,27 +8,37 @@ window.Game = (function () {
 	 */
 
 	var PIPECOUNT = 4;
-
+	var MUTE = false;
 	var Game = function (el) {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
-		// console.log(this.player);
 		this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
 		this.pipesArr = [];
 		for (var i = 0; i < PIPECOUNT; i++) {
-			this.pipesArr.push(new window.Pipes(this.el.find('.pipe' + (i+1)), this));
+			this.pipesArr.push(new window.Pipes(this.el.find('.pipe' + (i + 1)), this));
 		}
-		// this.ground = new window.Ground(this.el.find('.Ground'), this);
 		this.counter = 0;
-		// this.landscape = new window.Landscape(this.el.find('.Landscape'), this);
 		this.isPlaying = false;
 		this.px = 0;
 		this.py = 0;
 		this.gameScore = 0;
-		this.mute = false;
 
-		// Cache a bound onFrame since we need it each frame.
 		this.onFrame = this.onFrame.bind(this);
+		var that = this;
+		this.el.find('.Mute').click(function () {
+			console.log(MUTE);
+			if (MUTE) {
+				that.el.find('audio').prop('muted', false);
+				that.el.find('.Mute').css({'background-image' : 'url(../images/mute.png)'});
+				MUTE = false;
+				console.log(MUTE);
+			} else {
+				that.el.find('audio').prop('muted', true);
+				that.el.find('.Mute').css({'background-image' : 'url(../images/play.png)'});
+				MUTE = true;
+			}
+
+		});
 	};
 
 	/**
@@ -42,10 +52,6 @@ window.Game = (function () {
 		if (!this.isPlaying) {
 			return;
 		}
-		// console.log(this.isPlaying);
-		// console.log(this.canvas);
-		//this.canvas.style.transform = "rotate(7deg)";
-		// Calculate how long since last frame in seconds.
 		var now = +new Date() / 1000,
 			delta = now - this.lastFrame;
 		this.lastFrame = now;
@@ -55,17 +61,14 @@ window.Game = (function () {
 		this.player.onFrame(delta);
 		this.el.find('.Current').text(this.gameScore);
 		for (var i = 0; i < PIPECOUNT; i++) {
-			var cPipe = this.pipesArr[i].onFrame(this.player.pos, i+1);
+			var cPipe = this.pipesArr[i].onFrame(this.player.pos, i + 1);
 			// console.log(this.gameScore);
 			if (cPipe === 'failure') {
 				return this.gameover();
 			}
 		}
 
-		this.el.find('.Mute').click(function () {
-			this.mute = true;
-			// console.log('clikced');
-		});
+
 		// this.landscape.onFrame(delta);
 		// Request next frame.
 		// this.el.css('transform', 'translateZ(0) translate(' + this.counter + 'em, ' + 0 + 'em)');
@@ -85,22 +88,13 @@ window.Game = (function () {
 		this.isPlaying = true;
 	};
 
-	Game.prototype.playSound = function (sound) {
-		if (this.mute) {
-			return;
-		} else {
-			var audio = new Audio('../sounds/' + sound);
-			audio.play();
-		}
-	};
-
 	/**
 	 * Resets the state of the game so a new game can be started.
 	 */
 	Game.prototype.reset = function () {
 		this.player.reset();
 		for (var i = 0; i < PIPECOUNT; i++) {
-			this.pipesArr[i].reset(i+1);
+			this.pipesArr[i].reset(i + 1);
 		}
 	};
 
@@ -112,7 +106,9 @@ window.Game = (function () {
 		// console.log(this.isPlaying);
 		// var audio = new Audio('../sounds/sfx_die.ogg');
 		// audio.play();
-		this.playSound('sfx_die.ogg');
+		// this.playSound('sfx_die.ogg');
+		this.el.find('#sound_die').get(0).play();
+
 		// Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');

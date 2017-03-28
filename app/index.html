@@ -64,9 +64,20 @@
         </div>
         <div class="Settings">
             <a class="Mute"></a>
-            <a class="Pause"></a>
             <div class="Current">0</div>
         </div>
+        <audio autoplay loop id="sound_music">
+            <source src="../sounds/sfx_loop.ogg" type="audio/ogg">
+        </audio>
+        <audio id="sound_wing">
+            <source src="../sounds/sfx_wing.ogg" type="audio/mpeg">
+        </audio>
+        <audio id="sound_die">
+            <source src="../sounds/sfx_die.ogg" type="audio/mpeg">
+        </audio>
+        <audio id="sound_point">
+            <source src="../sounds/sfx_point.ogg" type="audio/mpeg">
+        </audio>
     </div>
 
 
@@ -83,7 +94,6 @@
     <script src="scripts/player.js"></script>
     <script src="scripts/utils.js"></script>
     <script src="scripts/pipes.js"></script>
-    <script src="scripts/sounds.js"></script>
 
     <!--<script src="scripts/ground.js"></script>-->
 

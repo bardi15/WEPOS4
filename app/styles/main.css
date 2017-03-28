@@ -27,7 +27,7 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 	left: 130px;
 	z-index: 3;
   	animation: birdFlap 0.2s steps(3, end) infinite alternate;
-  	/*transition: transform 0.3s;*/
+  	transition: transform 0.3s;
 	transform: translateZ(0);
 }
 
@@ -174,8 +174,8 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
     width: 4em;
     height: 45em;
     position: relative;
-    /*background: url('../images/pipe-b.png');*/
-	background-color: green;
+    background: url('../images/pipe-b.png');
+	/*background-color: green;*/
 	background-size: 100%;
 }
 .gap {
@@ -208,14 +208,6 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 
 .Mute {
 	background-image: url("../images/mute.png");
-	background-size: 70%;
-	width: 3em;
-	height: 100%;
-	float: left;
-	background-repeat: no-repeat;
-}
-.Pause {
-	background-image: url("../images/pause.png");
 	background-size: 70%;
 	width: 3em;
 	height: 100%;
