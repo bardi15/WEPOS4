@@ -31,7 +31,7 @@ window.Controls = (function () {
         // Only jump if space wasn't pressed.
         if (e.keyCode === 32 && !this.keys.space) {
             this._didJump = true;
-            console.log('iiiiiii');
+            // console.log('iiiiiii');
         }
         // this._didJump = false;
         // Remember that this button is down.
@@ -45,7 +45,7 @@ window.Controls = (function () {
 
     Controls.prototype._onKeyUp = function (e) {
         if (e.keyCode in KEYS) {
-            console.log('ooooooo');
+            // console.log('ooooooo');
             var keyName = KEYS[e.keyCode];
             this.keys[keyName] = false;
             return false;

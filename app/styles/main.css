@@ -9,42 +9,33 @@
 h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 
 .Player {
-	background-image: url('../images/bird.png');
+	/*background-image: url('../images/bird_Sprite.png');
 	position: absolute;
-	width: 3.4em;
-	height: 2.4em;
+	width: 4em;
+	height: 2.8em;
+
 	-webkit-animation: animBird 300ms steps(4) infinite;
 	-moz-animation: animBird 300ms steps(4) infinite;
-	animation: animBird 300ms steps(4) infinite;
+  	animation: birdFlap 0.2s steps(3, end) infinite alternate;
 	transform: translateZ(0);
-	z-index: 10;
+	z-index: 10;*/
+	height: 2.8em;
+	width: 4em;
+	background: url('http://s28.postimg.org/k90gybbtl/bird_Sprite.png');
+	position: absolute;
+	bottom: 50%;
+	left: 130px;
+	z-index: 3;
+  	animation: birdFlap 0.2s steps(3, end) infinite alternate;
+  	/*transition: transform 0.3s;*/
+	transform: translateZ(0);
 }
 
-.Player-up{
-	background-image: url('../images/bird-up.png');
-}
 
-.Player-down{
-	background-image: url('../images/bird-down.png');
+@keyframes birdFlap {  
+  0% {background-position: 0 84px;}
+  100% {background-position: 0 0;}
 }
-
-@-webkit-keyframes animBird {
-   from { background-position: 0 0; }
-   to { background-position: 0 -9.6em; }
-}
-@-moz-keyframes animBird {
-   from { background-position: 0 0; }
-   to { background-position: 0 -9.6em; }
-}
-@-o-keyframes animBird {
-   from { background-position: 0 0; }
-   to { background-position: 0 -9.6em; }
-}
-@keyframes animBird {
-   from { background-position: 0 0; }
-   to { background-position: 0 -9.6em; }
-}
-
 
 .Ground {
 	background-image: url("../images/land.png");
@@ -165,7 +156,7 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 .GameCanvas  {
 	font-size: 10px;
 	position: absolute;
-	width: 51.2em;
+	width: 102.4em;
 	height: 57.6em;
 	overflow: hidden;
 }
@@ -177,12 +168,15 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 }
 .pipesContainer {
     float: left;
+	display:none;
 }
 .pipe {
     width: 4em;
     height: 45em;
     position: relative;
-    background: url('../images/pipe-b.png');
+    /*background: url('../images/pipe-b.png');*/
+	background-color: green;
+	background-size: 100%;
 }
 .gap {
     width: 100%;

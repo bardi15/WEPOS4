@@ -12,7 +12,7 @@ window.Game = (function () {
 	var Game = function (el) {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
-		console.log(this.player);
+		// console.log(this.player);
 		this.pipes = new window.Pipes(this.el.find('.Pipes'), this);
 		this.pipesArr = [];
 		for (var i = 0; i < PIPECOUNT; i++) {
@@ -42,7 +42,7 @@ window.Game = (function () {
 		if (!this.isPlaying) {
 			return;
 		}
-		console.log(this.isPlaying);
+		// console.log(this.isPlaying);
 		// console.log(this.canvas);
 		//this.canvas.style.transform = "rotate(7deg)";
 		// Calculate how long since last frame in seconds.
@@ -108,7 +108,6 @@ window.Game = (function () {
 	 * Signals that the game is over.
 	 */
 	Game.prototype.gameover = function () {
-		// return;
 		this.isPlaying = false;
 		// console.log(this.isPlaying);
 		// var audio = new Audio('../sounds/sfx_die.ogg');
@@ -131,10 +130,11 @@ window.Game = (function () {
 	/**
 	 * Some shared constants.
 	 */
-	Game.prototype.WORLD_WIDTH = 51.2;
+	Game.prototype.WORLD_WIDTH = 102.4;
 	Game.prototype.WORLD_HEIGHT = 57.6;
 	Game.prototype.SPEED = 1;
 	Game.prototype.STORYLENGTH = 33.6;
+	Game.prototype.WIGGLE = 1;
 
 
 	return Game;
