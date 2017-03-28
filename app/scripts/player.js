@@ -5,7 +5,7 @@ window.Player = (function () {
 
 	// All these constants are in em's, multiply by 10 pixels
 	// for 1024x576px canvas.
-	var SPEED = 30; // * 10 pixels per second
+	var SPEED = 15; // * 10 pixels per second
 	var WIDTH = 3.4;
 	var HEIGHT = 2.4;
 	var INITIAL_POSITION_X = 30;
@@ -32,7 +32,6 @@ window.Player = (function () {
 			this.pos.y -= delta * SPEED;
 			this.el.addClass('Player-up');
 			this.el.removeClass('Player-down');
-			// this.game.playSound('sfx_wing.ogg');
 		} else {
 			this.pos.y += delta * SPEED;
 			this.el.removeClass('Player-up');

@@ -63,6 +63,7 @@ window.Game = (function () {
 
 		this.el.find('.Mute').click(function () {
 			this.mute = true;
+			console.log('clikced');
 		});
 		// this.landscape.onFrame(delta);
 		// Request next frame.
