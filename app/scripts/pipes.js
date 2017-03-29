@@ -3,9 +3,9 @@ window.Pipes = (function () {
 
 	var SPEED = 0.5; // * 10 pixels per second
 	var WIDTH = 4;
-
+	var INFRONT = false;
 	var _TOP = 14.5; //14.5
-
+	var CC = 0;
 	var Pipes = function (el, game) {
 		this.el = el;
 		this.game = game;
@@ -53,21 +53,68 @@ window.Pipes = (function () {
 	}
 
 	Pipes.prototype.checkCollisionWithBounds = function (pipe) {
-		var pipeStart = this.pos.x + (pipe * WIDTH - 1);
-		var pipeEnd = pipeStart + 2;
+		this.el.css({ 'background-color': 'white' });
+		var pipeStart = this.pos.x + (pipe * WIDTH - 2) - (WIDTH - 2);
+		var nextPipe = pipeStart + this.distance + WIDTH;
+		var pipeEnd = pipeStart + (WIDTH);
 		var player = this.game.player.pos.x;
-		console.log(pipeStart, player, pipeEnd);
+		// console.log(pipeStart, player, pipeEnd, pipe);
 
-		if (player > pipeEnd && player < pipeEnd + SPEED) {
+
+		// this.el.css({'background-color':'green'});
+		if (player > pipeEnd && player < pipeEnd + SPEED || player === pipeEnd) {
 			this.game.gameScore += 1;
 			this.game.el.find('#sound_point').get(0).play();
 		}
+		// if (CC === 10) {
+		// 	console.log(CC);
+		// } else if (CC === 20) {
+		// 	CC = 0;
+		// }
 
-		if (player > pipeStart && player < pipeEnd) {
 
+		// console.log(pipe, ':', pipeStart.toFixed(2), pipeEnd.toFixed(2), player.toFixed(2), nextPipe.toFixed(2));
+		// if (INFRONT) {
+		// 	this.game.gameScore += 1;
+		// 	this.game.el.find('#sound_point').get(0).play();
+		// }
+		if (player > pipeStart - WIDTH && player < pipeEnd - WIDTH) {
+			// this.el.css({ 'background-color': 'green' });
 			var pipeUpperLimit = this.margin + _TOP + 2.5;  // VALUE GOES DOWN
 			var pipeLowerLimit = pipeUpperLimit + this.gap - 2.5;  // VALUE GOES UP
 			var playerUD = this.game.WORLD_HEIGHT - this.game.player.getBirdHeight();
+
+			var t;
+			var vwidth = 1000;
+			var ps = pipeStart * 10;
+			var heights = 2;
+			var xnxx = pipeLowerLimit;
+			if (pipe === 1) {
+				t = this.game.el.find('.talky1');
+				t.css({ 'width': vwidth });
+				t.css({ 'height': heights });
+				t.css({ 'margin-left': ps });
+				t.css({ 'margin-top': xnxx });
+			} else if (pipe === 2) {
+				t = this.game.el.find('.talky2');
+				t.css({ 'width': vwidth });
+				t.css({ 'height': heights });
+				t.css({ 'margin-left': ps });
+				t.css({ 'margin-top': xnxx });
+			} else if (pipe === 3) {
+				t = this.game.el.find('.talky3');
+				t.css({ 'width': vwidth });
+				t.css({ 'height': heights });
+				t.css({ 'margin-left': ps });
+				t.css({ 'margin-top': xnxx });
+			} else if (pipe === 4) {
+				t = this.game.el.find('.talky4');
+				t.css({ 'width': vwidth });
+				t.css({ 'height': heights });
+				t.css({ 'margin-left': ps });
+				t.css({ 'margin-top': xnxx });
+			}
+
 			if (!(playerUD >= pipeUpperLimit && playerUD <= pipeLowerLimit)) {
 				return false;
 			}

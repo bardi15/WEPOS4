@@ -26,12 +26,10 @@ window.Game = (function () {
 		this.onFrame = this.onFrame.bind(this);
 		var that = this;
 		this.el.find('.Mute').click(function () {
-			console.log(MUTE);
 			if (MUTE) {
 				that.el.find('audio').prop('muted', false);
 				that.el.find('.Mute').css({'background-image' : 'url(../images/mute.png)'});
 				MUTE = false;
-				console.log(MUTE);
 			} else {
 				that.el.find('audio').prop('muted', true);
 				that.el.find('.Mute').css({'background-image' : 'url(../images/play.png)'});
@@ -48,30 +46,22 @@ window.Game = (function () {
 	Game.prototype.onFrame = function () {
 		this.px += 1;
 		this.py += 1;
-		// Check if the game loop should stop.
 		if (!this.isPlaying) {
 			return;
 		}
 		var now = +new Date() / 1000,
 			delta = now - this.lastFrame;
 		this.lastFrame = now;
-		// console.log();
-		// this.counter += 5;
+
 
 		this.player.onFrame(delta);
 		this.el.find('.Current').text(this.gameScore);
 		for (var i = 0; i < PIPECOUNT; i++) {
 			var cPipe = this.pipesArr[i].onFrame(this.player.pos, i + 1);
-			// console.log(this.gameScore);
 			if (cPipe === 'failure') {
 				return this.gameover();
 			}
 		}
-
-
-		// this.landscape.onFrame(delta);
-		// Request next frame.
-		// this.el.css('transform', 'translateZ(0) translate(' + this.counter + 'em, ' + 0 + 'em)');
 		window.requestAnimationFrame(this.onFrame);
 	};
 
@@ -79,7 +69,6 @@ window.Game = (function () {
 	 * Starts a new game.
 	 */
 	Game.prototype.start = function () {
-		// console.log('start');
 		this.reset();
 
 		// Restart the onFrame loop
@@ -102,11 +91,8 @@ window.Game = (function () {
 	 * Signals that the game is over.
 	 */
 	Game.prototype.gameover = function () {
+		return;
 		this.isPlaying = false;
-		// console.log(this.isPlaying);
-		// var audio = new Audio('../sounds/sfx_die.ogg');
-		// audio.play();
-		// this.playSound('sfx_die.ogg');
 		this.el.find('#sound_die').get(0).play();
 
 		// Should be refactored into a Scoreboard class.

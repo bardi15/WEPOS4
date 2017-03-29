@@ -9,16 +9,6 @@
 h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 
 .Player {
-	/*background-image: url('../images/bird_Sprite.png');
-	position: absolute;
-	width: 4em;
-	height: 2.8em;
-
-	-webkit-animation: animBird 300ms steps(4) infinite;
-	-moz-animation: animBird 300ms steps(4) infinite;
-  	animation: birdFlap 0.2s steps(3, end) infinite alternate;
-	transform: translateZ(0);
-	z-index: 10;*/
 	height: 2.8em;
 	width: 4em;
 	background: url('http://s28.postimg.org/k90gybbtl/bird_Sprite.png');
@@ -74,7 +64,7 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 	height: 46.4em;
 	background-repeat: repeat-x;
 	background-color: #4ec0ca;
-	background-image: url("../images/sky.png");
+	/*background-image: url("../images/sky.png");*/
    	background-position: bottom; 
 	transform: translateZ(0);
 	-webkit-animation: animSky 600ms steps(4) infinite;
@@ -121,6 +111,34 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 
 }
 
+.talky1 {
+
+	background-color: yellow;
+	z-index: 100;
+}
+.talky2 {
+
+	background-color: orange;
+	z-index: 100;
+}
+.talky3 {
+
+	background-color: blue;
+	z-index: 100;
+}
+.talky4 {
+
+	background-color: black;
+	z-index: 100;
+}
+
+.talky5 {
+	height: 100%;
+	width: 40%;
+	background-color: red;
+	z-index: 100;
+}
+
 /**
 * Reset transform to animate it into the correct spot on the screen.
 */
@@ -165,18 +183,21 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
     position: absolute;
     top: -30.4em;
     width: 100000px;
+	z-index: -2;
 }
 .pipesContainer {
     float: left;
 	display:none;
+	z-index: -2;
 }
 .pipe {
     width: 4em;
     height: 45em;
     position: relative;
     background: url('../images/pipe-b.png');
-	/*background-color: green;*/
+	opacity:0.3;
 	background-size: 100%;
+	z-index: -2;
 }
 .gap {
     width: 100%;
@@ -184,9 +205,11 @@ h1, h2, h3, div, span { font-family: '04b_19', 'Georgia', serif; }
 }
 .pipe-topHalf {
 	background-position: bottom;
+	z-index: -2;
 }
 .pipe-bottomHalf {
 	background-position: top;
+	z-index: -2;
 }
 
 .score {

@@ -39,12 +39,10 @@ window.Player = (function () {
 		that.el.stop().animate({
 			bottom: '+=3em'
 		}, 200, function () {
-			// birdPos();
 			that.el.css('transform', 'rotate(0deg)');
 			that.el.stop().animate({
 				bottom: '-=3em'
 			}, 300, 'linear', function () {
-				// birdPos();
 				that.drop();
 			});
 		});
@@ -53,7 +51,7 @@ window.Player = (function () {
 		var totalFallTime = FALLTIME * (this.getBirdHeight() / this.game.WORLD_HEIGHT);
 		this.el.css('transform', 'rotate(20deg)');
 		this.el.stop().animate({
-			bottom: '0' 
+			bottom: '0'
 		}, totalFallTime, 'linear');
 	}
 	Player.prototype.getBirdHeight = function () {
