@@ -23,7 +23,7 @@ window.Player = (function () {
 		this.el.removeAttr('style');
 	};
 
-	Player.prototype.onFrame = function (delta) {
+	Player.prototype.onFrame = function () {
 		this.pos.y = this.getBirdHeight();
 		if (Controls._didJump) {
 			this.gameStarted = true;
@@ -46,17 +46,17 @@ window.Player = (function () {
 				that.drop();
 			});
 		});
-	}
+	};
 	Player.prototype.drop = function () {
 		var totalFallTime = FALLTIME * (this.getBirdHeight() / this.game.WORLD_HEIGHT);
 		this.el.css('transform', 'rotate(20deg)');
 		this.el.stop().animate({
 			bottom: '0'
 		}, totalFallTime, 'linear');
-	}
+	};
 	Player.prototype.getBirdHeight = function () {
 		return parseInt(this.el.css('bottom')) / 10; // because em
-	}
+	};
 
 	Player.prototype.checkCollisionWithBounds = function () {
 		if (this.gameStarted) {
