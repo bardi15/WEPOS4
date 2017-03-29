@@ -1,9 +1,9 @@
 @font-face {
-    font-family: 'Conv_04B_19__';
-    src: url('../font/04B_19__.eot?#iefix') format('embedded-opentype'), 
-        url('../font/04B_19__.woff') format('woff'), 
-        url('../font/04B_19__.ttf')  format('truetype'),
-        url('../font/04B_19__.svg#svgFontName') format('svg');
+	font-family: 'Conv_04B_19__';
+	src: url('../font/04B_19__.eot?#iefix') format('embedded-opentype'), 
+		url('../font/04B_19__.woff') format('woff'), 
+		url('../font/04B_19__.ttf')  format('truetype'),
+		url('../font/04B_19__.svg#svgFontName') format('svg');
 }
 
 .Player {
@@ -14,15 +14,16 @@
 	bottom: 50%;
 	left: 130px;
 	z-index: 3;
-  	animation: birdFlap 0.2s steps(3, end) infinite alternate;
-  	transition: transform 0.3s;
+	animation: birdFlap 0.2s steps(3, end) infinite alternate;
+	transition: transform 0.3s;
 	transform: translateZ(0);
+	background-size: 100%;
 }
 
 
 @keyframes birdFlap {  
-  0% {background-position: 0 84px;}
-  100% {background-position: 0 0;}
+	0% {background-position: 0 84px;}
+	100% {background-position: 0 0;}
 }
 
 .Ground {
@@ -40,20 +41,20 @@
 }
 
 @-webkit-keyframes animGround {
-   from { background-position: 0 0; }
-   to { background-position: 5em 0; }
+	from { background-position: 0 0; }
+	to { background-position: 5em 0; }
 }
 @-moz-keyframes animGround {
-   from { background-position: 0 0; }
-   to { background-position: 5em 0; }
+	from { background-position: 0 0; }
+	to { background-position: 5em 0; }
 }
 @-o-keyframes animGround {
-   from { background-position: 0 0; }
-   to { background-position: 5em 0; }
+	from { background-position: 0 0; }
+	to { background-position: 5em 0; }
 }
 @keyframes animGround {
-   from { background-position: 0 0; }
-   to { background-position: 5em 0; }
+	from { background-position: 0 0; }
+	to { background-position: 5em 0; }
 }
 
 .sky {
@@ -63,7 +64,7 @@
 	background-repeat: repeat-x;
 	background-color: #4ec0ca;
 	background-image: url("../images/sky.png");
-   	background-position: bottom; 
+	background-position: bottom; 
 	transform: translateZ(0);
 	-webkit-animation: animSky 600ms steps(4) infinite;
 	-moz-animation: animSky 600ms steps(4) infinite;
@@ -71,69 +72,21 @@
 }
 
 @-webkit-keyframes animSky {
-   from { background-position: 0 bottom; }
-   to { background-position: -27.6em bottom; }
+	from { background-position: 0 bottom; }
+	to { background-position: -27.6em bottom; }
 }
 @-moz-keyframes animSky {
-   from { background-position: 0 bottom; }
-   to { background-position: -27.6em bottom; }
+	from { background-position: 0 bottom; }
+	to { background-position: -27.6em bottom; }
 }
 @-o-keyframes animSky {
-   from { background-position: 0 bottom; }
-   to { background-position: -27.6em bottom; }
+	from { background-position: 0 bottom; }
+	to { background-position: -27.6em bottom; }
 }
 @keyframes animSky {
-   from { background-position: 0 bottom; }
-   to { background-position: -27.6em bottom; }
+	from { background-position: 0 bottom; }
+	to { background-position: -27.6em bottom; }
 }
-/*
-.Scoreboard {
-	position: absolute;
-	left: 50%;
-	top: 10em;
-	height: 30em;
-	width: 40em;
-	margin-left: -20em;
-	box-sizing: border-box;
-	background: purple;
-	text-align: center;
-	-webkit-transform: translate(0, -40em);
-	-ms-transform: translate(0, -40em);
-	-moz-transform: translate(0, -40em);
-	-o-transform: translate(0, -40em);
-	transform: translate(0, -40em);
-	-webkit-transition: -webkit-transform 0.5s;
-	-o-transition: -webkit-transform 0.5s;
-	-moz-transition: -webkit-transform 0.5s;
-	transition: -webkit-transform 0.5s;
-
-}*/
-
-/**
-* Reset transform to animate it into the correct spot on the screen.
-*/
-/*.Scoreboard-is-visible {
-	-webkit-transform: none;
-	-o-transform: none;
-	-moz-transform: none;
-	-ms-transform: none;
-	transform: none;
-
-}*/
-
-/*.Scoreboard-restart {
-	margin-top: 20em;
-	font-size: inherit;
-	padding: 0.4em 1.5em;
-	border: 0.2em solid white;
-	background: none;
-	cursor: pointer;
-}
-.Scoreboard-restartText {
-	font-family: 'Comic Sans MS', serif;
-	font-size: 2.4em;
-	color: white;
-}*/
 
 .browsehappy {
 	margin: 0.2em 0;
@@ -177,15 +130,6 @@
 	background-position: top;
 }
 
-/*.score {
-	position: absolute;
-	color: white;
-	font-size: 4em;
-	box-sizing: border-box;
-	background: black;
-	text-align: center;
-}*/
-
 .Settings {
 	font-family: 'Conv_04B_19__';
 	position: absolute;
@@ -213,7 +157,7 @@
 	font-family: 'Conv_04B_19__';
     position: absolute;
     left: 50%;
-    top: 0em;
+    top: 0;
     height: 40em;
     width: 40em;
     margin-left: -20em;
@@ -236,24 +180,6 @@
     -webkit-transform: none;
 }
 
-/*.Scoreboard-restart {
-    margin-top: 5em;
-    font-size: 1.5em;
-    padding: 0.4em 1.5em;
-    border: 0.2em solid dimgrey;
-    background: none;
-    cursor: pointer;
-}
-
-.Scoreboard-restartText,
-.Score {
-	height: 20em;
-	position:relative;
-    padding-top: 10em;
-	margin-top: 10em;
-    font-size: 2em;
-    color: dimgray;
-}*/
 .score-value {
 	display: none;
 	margin-top: 7em;
@@ -261,10 +187,10 @@
 	margin-left: 10em;
 }
 .best-value {
-  display: none;
-  margin-top: 2em;
-  font-size: 2.5em;
-  margin-left: 10em;
+	display: none;
+	margin-top: 2em;
+	font-size: 2.5em;
+	margin-left: 10em;
 }
 .Score {
     font-size: 5em;
@@ -283,4 +209,18 @@
 	margin-top:19em;
 	margin-left:5.5em;
 	float: left;
+}
+
+.replay {
+	background-image: url('../images/replay.png');
+	height: 7em;
+	width: 11.5em;
+	margin-top: -8em;
+	margin-left: 15em;
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+.replay:hover {
+	opacity: 1;
 }

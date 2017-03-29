@@ -54,7 +54,6 @@ window.Pipes = (function () {
 
 	Pipes.prototype.checkCollisionWithBounds = function (pipe) {
 		var pipeStart = this.pos.x + (pipe * WIDTH - 2) - (WIDTH - 2);
-		// var nextPipe = pipeStart + this.distance + WIDTH;
 		var pipeEnd = pipeStart + (WIDTH);
 		var player = this.game.player.pos.x;
 		if (player > pipeEnd && player < pipeEnd + SPEED || player === pipeEnd) {

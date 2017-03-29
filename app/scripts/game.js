@@ -9,6 +9,7 @@ window.Game = (function () {
 
 	var PIPECOUNT = 4;
 	var MUTE = false;
+	
 	var Game = function (el) {
 		this.el = el;
 		this.player = new window.Player(this.el.find('.Player'), this);
@@ -17,13 +18,9 @@ window.Game = (function () {
 		for (var i = 0; i < PIPECOUNT; i++) {
 			this.pipesArr.push(new window.Pipes(this.el.find('.pipe' + (i + 1)), this));
 		}
-		// this.counter = 0;
 		this.isPlaying = false;
-		// this.px = 0;
-		// this.py = 0;
 		this.gameScore = 0;
 		this.bestScore = 0;
-
 		this.onFrame = this.onFrame.bind(this);
 		var that = this;
 		this.el.find('.Mute').click(function () {
@@ -70,8 +67,6 @@ window.Game = (function () {
 	}
 
 	Game.prototype.onFrame = function () {
-		// this.px += 1;
-		// this.py += 1;
 		this.scoreCheck();
 		if (!this.isPlaying) {
 			return;
@@ -112,11 +107,9 @@ window.Game = (function () {
 	 * Signals that the game is over.
 	 */
 	Game.prototype.gameover = function () {
-
 		this.isPlaying = false;
 		this.player.gameStarted = false;
 		this.el.find('#sound_die').get(0).play();
-		// Should be refactored into a Scoreboard class.
 		var that = this;
 		var scoreboardEl = this.el.find('.Scoreboard');
 		scoreboardEl.find('.score-value').show();
@@ -125,18 +118,10 @@ window.Game = (function () {
 		scoreboardEl.find('.score-value').text(this.gameScore);
 		scoreboardEl.find('.best-value').text(this.bestScore);
 		scoreboardEl.addClass('Scoreboard-is-visible');
-		scoreboardEl.one('click', function () {
+		scoreboardEl.find('.replay').one('click', function () {
 			scoreboardEl.removeClass('Scoreboard-is-visible');
 			that.start();
 		});
-		// scoreboardEl
-		// 	.addClass('Scoreboard-is-visible')
-		// 	.find('.Scoreboard-restart')
-		// 	.one('click', function () {
-		// 		scoreboardEl.removeClass('Scoreboard-is-visible');
-		// 		that.start();
-		// 	});
-
 		this.gameScore = 0;
 	};
 
@@ -146,10 +131,7 @@ window.Game = (function () {
 	Game.prototype.WORLD_WIDTH = 102.4;
 	Game.prototype.WORLD_HEIGHT = 57.6;
 	Game.prototype.SPEED = 1;
-	Game.prototype.STORYLENGTH = 33.6;
 	Game.prototype.WIGGLE = 1;
-
-
 	return Game;
 })();
 
